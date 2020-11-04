@@ -1,3 +1,6 @@
 # SalesAndInventory
 SQL Project of TE
-MySQL, JSP and Serverlet
+Using MySQL, JSP and Serverlet
+
+Sales details of customers (detailed purchase info)
+And accordingly, the inventory (Godown) status
