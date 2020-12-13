@@ -123,6 +123,11 @@ public class product extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Cashier");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -154,6 +159,11 @@ public class product extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Pos");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -375,8 +385,7 @@ public class product extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addContainerGap())
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -385,7 +394,8 @@ public class product extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(350, 350, 350)
                                 .addComponent(jLabel8)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -594,22 +604,52 @@ public class product extends javax.swing.JFrame {
         int selectIndex = jTable1.getSelectedRow();
         
         int id = Integer.parseInt(d1.getValueAt(selectIndex, 0).toString());
-        String brand = txtpro.getText();
+        String product = txtpro.getText();
+        String desc = txtdesc.getText();
+        CategoryItem citem = (CategoryItem)txtcat.getSelectedItem();
+        BrandItem britem = (BrandItem)txtbrand.getSelectedItem();
+        String cprice = txtcostp.getText();
+        String rprice = txtretailp.getText();
+        String qty = txtqty.getText();
+        String barcode = txtbarcode.getText();
+        
+        
+        
+        
+        
+        
+        
         String status = txtstatus.getSelectedItem().toString();
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
             
             con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
-            pat = con1.prepareStatement("update brand set brand=?, status=? where id=?");
-            pat.setString(1, brand);
-            pat.setString(2, status);
-            pat.setInt(3, id);
+            pat = con1.prepareStatement("update product set product=?,description=?,cat_id=?,brand_id=?,cost_price=?,retail_price=?,qty=?,barcode=?,status=? where id=?");
+            
+            pat.setString(1, product);
+            pat.setString(2, desc);
+            pat.setInt(3, citem.id);
+            pat.setInt(4, britem.id);
+            pat.setString(5, cprice);
+            pat.setString(6, rprice);
+            pat.setString(7, qty);
+            pat.setString(8, barcode);
+            pat.setString(9,status);
+            pat.setInt(10,id);
+            
             pat.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Brand Updateddd");
+            JOptionPane.showMessageDialog(null,"Product Updateddd");
             table_update();
             
             txtpro.setText("");
+            txtdesc.setText("");
+            txtcat.setSelectedIndex(-1);
+            txtbrand.setSelectedIndex(-1);
+            txtcostp.setText("");
+            txtretailp.setText("");
+            txtqty.setText("");
+            txtbarcode.setText("");
             txtstatus.setSelectedIndex(-1);
             txtpro.requestFocus();
         } catch (ClassNotFoundException ex) {
@@ -633,7 +673,14 @@ public class product extends javax.swing.JFrame {
         int selectIndex = jTable1.getSelectedRow();
                
                txtpro.setText(d1.getValueAt(selectIndex, 1).toString());
-               txtstatus.setSelectedItem(d1.getValueAt(selectIndex, 2).toString());
+               txtdesc.setText(d1.getValueAt(selectIndex, 2).toString());
+               txtcat.setSelectedItem(d1.getValueAt(selectIndex, 3).toString());
+               txtbrand.setSelectedItem(d1.getValueAt(selectIndex, 4).toString());
+               txtcostp.setText(d1.getValueAt(selectIndex, 5).toString());
+               txtretailp.setText(d1.getValueAt(selectIndex, 6).toString());
+               txtqty.setText(d1.getValueAt(selectIndex, 7).toString());
+               txtbarcode.setText(d1.getValueAt(selectIndex, 8).toString());
+               txtstatus.setSelectedItem(d1.getValueAt(selectIndex, 9).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -650,14 +697,22 @@ public class product extends javax.swing.JFrame {
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
                      con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
-                     pat = con1.prepareStatement("delete from brand where id =?");
+                     pat = con1.prepareStatement("delete from product where id =?");
                      pat.setInt(1, id);
                      pat.executeUpdate();
-                     JOptionPane.showMessageDialog(null,"Brand Deletedd");
+                     JOptionPane.showMessageDialog(null,"Product Deletedd");
                      table_update();
-                      txtpro.setText("");
-                       txtstatus.setSelectedIndex(-1);
-                       txtpro.requestFocus();
+                     txtpro.setText("");
+                     txtdesc.setText("");
+                     txtcat.setSelectedIndex(-1);
+                    txtbrand.setSelectedIndex(-1);
+                    txtcostp.setText("");
+                    txtretailp.setText("");
+                      txtqty.setText("");
+                txtbarcode.setText("");
+                 txtstatus.setSelectedIndex(-1);
+                  txtpro.requestFocus();
+                                           
                      
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(product.class.getName()).log(Level.SEVERE, null, ex);
@@ -695,6 +750,20 @@ public class product extends javax.swing.JFrame {
         this.hide();
         p.setVisible(true);
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        pos pos = new pos();
+        this.hide();
+        pos.setVisible(true);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        cashier c = new cashier();
+        this.hide();
+        c.setVisible(true);
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
