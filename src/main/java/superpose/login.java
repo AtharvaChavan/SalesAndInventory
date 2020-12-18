@@ -162,7 +162,7 @@ public class login extends javax.swing.JFrame {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12382727", "sql12382727", "iENUuGDW2k");
             pat = con.prepareStatement("select * from cashier where username =? and password =?");
             
             pat.setString(1,username);

@@ -302,7 +302,7 @@ public class category extends javax.swing.JFrame {
             int c;
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
+                con1 = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12382727", "sql12382727", "iENUuGDW2k");
                 
                 pat = con1.prepareStatement("select * from category");
                 ResultSet rs = pat.executeQuery();
@@ -350,7 +350,7 @@ public class category extends javax.swing.JFrame {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
+            con1 = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12382727", "sql12382727", "iENUuGDW2k");
             pat = con1.prepareStatement("insert into category(category,status)values(?,?) ");
             pat.setString(1, category);
             pat.setString(2, status);
@@ -387,7 +387,7 @@ public class category extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
+            con1 = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12382727", "sql12382727", "iENUuGDW2k");
             pat = con1.prepareStatement("update category set category=?, status=? where id=?");
             pat.setString(1, category);
             pat.setString(2, status);
@@ -436,7 +436,7 @@ public class category extends javax.swing.JFrame {
             
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
-                     con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
+                     con1 = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12382727", "sql12382727", "iENUuGDW2k");
                      pat = con1.prepareStatement("delete from category where id =?");
                      pat.setInt(1, id);
                      pat.executeUpdate();

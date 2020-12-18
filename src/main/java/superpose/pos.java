@@ -401,7 +401,7 @@ public class pos extends javax.swing.JFrame {
             
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
+            con1 = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12382727", "sql12382727", "iENUuGDW2k");
                  insert = con1.prepareStatement("select * from product where barcode=?");
                  
                  insert.setString(1, name);
@@ -523,7 +523,7 @@ public class pos extends javax.swing.JFrame {
             String name = txtprocode.getText();
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                 con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
+                 con1 = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12382727", "sql12382727", "iENUuGDW2k");
                  insert = con1.prepareStatement("select * from product where barcode=?");
                  
                  insert.setString(1, name);
@@ -588,7 +588,7 @@ public class pos extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
+            con1 = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12382727", "sql12382727", "iENUuGDW2k");
             String query ="insert into sales(date,subtotal,pay,balance)values(?,?,?,?)";
             insert = con1.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
             insert.setString(1, date);

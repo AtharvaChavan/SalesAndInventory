@@ -312,7 +312,7 @@ public class cashier extends javax.swing.JFrame {
             int c;
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
+                con1 = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12382727", "sql12382727", "iENUuGDW2k");
                 
                 pat = con1.prepareStatement("select * from cashier");
                 ResultSet rs = pat.executeQuery();
@@ -361,7 +361,7 @@ public class cashier extends javax.swing.JFrame {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
+            con1 = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12382727", "sql12382727", "iENUuGDW2k");
             pat = con1.prepareStatement("insert into cashier(username,password,status)values(?,?,?) ");
             pat.setString(1, user);
             pat.setString(2, pass);
@@ -399,7 +399,7 @@ public class cashier extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
+            con1 = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12382727", "sql12382727", "iENUuGDW2k");
             pat = con1.prepareStatement("update brand set brand=?, status=? where id=?");
             pat.setString(1, brand);
             pat.setString(2, status);
@@ -450,7 +450,7 @@ public class cashier extends javax.swing.JFrame {
             
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
-                     con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
+                     con1 = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12382727", "sql12382727", "iENUuGDW2k");
                      pat = con1.prepareStatement("delete from brand where id =?");
                      pat.setInt(1, id);
                      pat.executeUpdate();

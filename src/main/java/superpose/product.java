@@ -420,7 +420,7 @@ public class product extends javax.swing.JFrame {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
+            con1 = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12382727", "sql12382727", "iENUuGDW2k");
             pat = con1.prepareStatement("select * from category");
             ResultSet rs = pat.executeQuery();
             txtcat.removeAllItems();
@@ -445,7 +445,7 @@ public class product extends javax.swing.JFrame {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
+            con1 = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12382727", "sql12382727", "iENUuGDW2k");
             pat = con1.prepareStatement("select * from brand");
             ResultSet rs = pat.executeQuery();
             txtbrand.removeAllItems();
@@ -475,7 +475,7 @@ public class product extends javax.swing.JFrame {
             int c;
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
+                con1 = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12382727", "sql12382727", "iENUuGDW2k");
                 
                 pat = con1.prepareStatement("select p.id,p.product,p.description,c.category,b.brand,p.cost_price,p.retail_price,p.qty,p.barcode,p.status from product p,category c,brand b where p.cat_id = c.id and p.brand_id = b.id");
                 ResultSet rs = pat.executeQuery();
@@ -556,7 +556,7 @@ public class product extends javax.swing.JFrame {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
+            con1 = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12382727", "sql12382727", "iENUuGDW2k");
             pat = con1.prepareStatement("insert into product(product, description,cat_id,brand_id,cost_price,retail_price,qty,barcode,status)values(?,?,?,?,?,?,?,?,?) ");
             pat.setString(1, product);
             pat.setString(2, desc);
@@ -624,7 +624,7 @@ public class product extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
+            con1 = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12382727", "sql12382727", "iENUuGDW2k");
             pat = con1.prepareStatement("update product set product=?,description=?,cat_id=?,brand_id=?,cost_price=?,retail_price=?,qty=?,barcode=?,status=? where id=?");
             
             pat.setString(1, product);
@@ -696,7 +696,7 @@ public class product extends javax.swing.JFrame {
             
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
-                     con1 = DriverManager.getConnection("jdbc:mysql://localhost/superpos", "root", "");
+                     con1 = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12382727", "sql12382727", "iENUuGDW2k");
                      pat = con1.prepareStatement("delete from product where id =?");
                      pat.setInt(1, id);
                      pat.executeUpdate();
