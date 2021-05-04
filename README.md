@@ -2,6 +2,9 @@
 SQL Project of TE
 Using MySQL, JSP and Serverlet
 
+Detailed Report:
+https://docs.google.com/document/d/1cxkJXTPFRCC-qeAv4T1BfxGudFm5mQ-L
+
 Sales details of customers (detailed purchase info)
 And accordingly, the inventory status
 
